@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Tab Three
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-content>
+        <ion-label>Create a new chat here</ion-label>
+        <ion-input placeholder="Insert author here" [(ngModel)]='chat.author'></ion-input>
+        <ion-input placeholder="Insert message here" [(ngModel)]='chat.message'></ion-input>
+        <ion-input placeholder="Insert image here" [(ngModel)]='chat.image'></ion-input>
+        
+        <ion-button (click)='set()'>Set</ion-button>
+    </ion-content>
+
+</ion-content>
