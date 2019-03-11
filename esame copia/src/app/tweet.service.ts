@@ -34,9 +34,9 @@ export class TweetService {
   public addComments(chatId: number, comment: Notice): Promise<Notice> {
     return this.httpClient.post<Notice>(`${this.api}/${chatId}/comments`, comment).toPromise();
   }
-  public addLike(chatId: number, likes: string): Promise<string> {
-    return this.httpClient.post<string>(`${this.api}/${chatId}/likes`, likes).toPromise();
-  }
+  // public addLike(chatId: number, likes: string): Promise<string> {
+  //   return this.httpClient.post<string>(`${this.api}/${chatId}/likes`, likes).toPromise();
+  // }
   public newChat(chat: Chat): Promise<Chat> {
     return this.httpClient.post<Chat>(this.api, chat).toPromise();
   }

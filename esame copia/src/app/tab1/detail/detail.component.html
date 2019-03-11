@@ -3,28 +3,23 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    
+    <ion-title *ngIf='chat'>
+      <p>{{ chat.author}}</p> 
+    </ion-title>  
   </ion-toolbar>
 </ion-header>
 
 
 
 <ion-content>
-    <ion-title *ngIf='chat'>
-      
-        <p>{{ notice.author}}</p> 
-        <p>{{notice.message}}</p>
-       
-       </ion-title>
-    <ion-list lines="none" *ngIf='chat'>
-        <ion-item *ngFor='let item of chat.notice'>
-          <p>{{item}}</p>
-        </ion-item>
-    </ion-list>
-    <ion-list lines="none" *ngIf='chat'>
-        <ion-item *ngFor='let items of chat.likes'>
-          <p>{{items}}</p>
-        </ion-item>
+  <ion-list lines="none" *ngIf='chat'>
+      <ion-img src="{{chat.image}}"></ion-img>
+      <h3>message:</h3><p>{{chat.message}}</p>
+      <p >like:{{chat.likes}}</p>
+      <h5>comments:</h5>
+      <ion-item *ngFor='let item of chat.comments'>
+       <ion-label><b>{{item.author}}</b>: {{item.message}}</ion-label>
+      </ion-item>
     </ion-list>
 </ion-content>
 
@@ -35,8 +30,8 @@
 <ion-footer>
   <ion-toolbar>
     <ion-input placeholder="Insert your comment here" [(ngModel)]='notice.message'></ion-input>
-    <ion-input placeholder="Insert your like here" [(ngModel)]='notice.author'></ion-input>
-    
+   
+    <!-- <ion-button (click)='send1()'>like</ion-button> -->
     <ion-button (click)='send()'>Send</ion-button>
   </ion-toolbar>
 </ion-footer>

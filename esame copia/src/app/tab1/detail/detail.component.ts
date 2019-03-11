@@ -42,12 +42,17 @@ export class DetailComponent implements OnInit {
         this.notice.message = ''; // reset dell'input
         this.loadChatAndMessages();
       });
-      this.tweetService.addLike(this.chat.id,this.chat.author).then(()=>{
-        this.chat.likes= [];
-         this.loadChatAndMessages();
-       });
-
-
+      
     }
   }
+  // send1(){
+  //   if(this.notice){
+  //       this.tweetService.addLike(this.chat.id,this.notice.author).then(()=>{
+  //       this.chat.likes= [this.notice.author];
+  //       this.loadChatAndMessages();
+  //     });
+  //   }
+  // }
+
+
 }
