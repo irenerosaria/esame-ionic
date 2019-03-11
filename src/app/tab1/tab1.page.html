@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      ELENCO CHAT
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list  lines="none" >
+      <ion-item [routerLink]="['/', 'tabs', 'tab1', item.id]" *ngFor='let item of chats'>
+        <ion-icon slot="start" color="medium" name="book"></ion-icon>
+        <ion-img [src]="item.image"></ion-img>
+        <ion-card-subtitle>{{item.author}}</ion-card-subtitle>
+        <ion-item> {{item.message}}</ion-item>
+      </ion-item>
+    </ion-list>
+</ion-content>
+
+
