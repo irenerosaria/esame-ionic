@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TweetService, Chat, Notice } from 'src/app/tweet.service'
 import { ActivatedRoute } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -11,16 +12,8 @@ export class DetailComponent implements OnInit {
     message: '',
     author: ''
   };
-  public chat: Chat = {
-  id: null,
-  author: '',
-  messages: '',
-  likes:[],
-  comment:[],
-  image: ''
-  
-  };
-  constructor(public tweetService: TweetService, public route: ActivatedRoute) { }
+  public chat: Chat;
+  constructor(public tweetService: TweetService, public route: ActivatedRoute,public toastController: ToastController) { }
 
   ngOnInit() {
     this.notice.author = this.tweetService.getAuthor();
@@ -37,14 +30,28 @@ export class DetailComponent implements OnInit {
     }
   }
   send() {
-    if (this.notice.author){
+    if (!this.notice.author){
+      this.presentToast('Set Author in tab2');
+    }
+    else {
       this.tweetService.addComments(this.chat.id, this.notice).then(() => {
         this.notice.message = ''; // reset dell'input
         this.loadChatAndMessages();
+        this.presentToast(' comment ok.');
       });
       
     }
   }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();
+  }
+
+
   // send1(){
   //   if(this.notice){
   //       this.tweetService.addLike(this.chat.id,this.notice.author).then(()=>{

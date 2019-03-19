@@ -1,20 +1,20 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      ELENCO CHAT
+      ELENCO INSTAGRAM
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list  lines="none" >
-      <ion-item [routerLink]="['/', 'tabs', 'tab1', item.id]" *ngFor='let item of chats'>
-        <ion-icon slot="start" color="medium" name="book"></ion-icon>
+  
+      <ion-card class="welcome-card" [routerLink]="['/', 'tabs', 'tab1', item.id]" *ngFor='let item of chats'>
+        <ion-card-header>
+          <ion-card-subtitle>{{ item.author }}</ion-card-subtitle>
+      </ion-card-header>
         <ion-img [src]="item.image"></ion-img>
-        <ion-card-subtitle>{{item.author}}</ion-card-subtitle>
-        <ion-item> {{item.message}}</ion-item>
-      </ion-item>
-    </ion-list>
+        <p> {{item.message}}</p>
+    </ion-card>
 </ion-content>
 
 

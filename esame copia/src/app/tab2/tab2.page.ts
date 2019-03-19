@@ -1,28 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { TweetService,Chat } from '../tweet.service';
-
+import { TweetService,Chat,Notice } from '../tweet.service';
+import { ToastController } from '@ionic/angular';
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
-export class Tab2Page {
-  public chat: Chat = {
-    id: null,
-    author: '',
-    messages: '',
-    likes:[],
-    comment:[],
-    image: ''
+export class Tab2Page implements OnInit{
+  public author:string;
+
+  constructor(public chatService: TweetService,public toastController: ToastController) {}
+  ngOnInit(){
+    this.author = this.chatService.getAuthor();
     
-    };
-
-  constructor(public chatService: TweetService) {
-    this.chat.author=this.chatService.getAuthor();
   }
-
+  
   set() {
-    this.chatService.newChat(this.chat).then(() => {});
+    this.chatService.setAuthor(this.author);
+    this.presentToast('User setted!');
   }
-
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();
+  }
 }
